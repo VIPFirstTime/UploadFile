@@ -1,0 +1,253 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+local Player = function(Ev)
+	if Ev == "" then
+		return nil
+	elseif Ev == "random" then
+		return game:GetService("Players"):GetPlayers()[math.random(1, #game:GetService("Players"):GetPlayers())]
+	else
+		for _, v in pairs(game:GetService("Players"):GetPlayers()) do
+			if v.Name:lower():sub(1, #Ev) == Ev:lower() or v.DisplayName:lower():sub(1, #Ev) == Ev then
+				return v
+			end
+		end
+	end
+end
+
+local lp = game:FindService("Players").LocalPlayer
+
+local function gplr(String)
+	local Found = {}
+	local strl = String:lower()
+	if strl == "all" then
+		for i,v in pairs(game:FindService("Players"):GetPlayers()) do
+			table.insert(Found,v)
+		end
+	elseif strl == "others" then
+		for i,v in pairs(game:FindService("Players"):GetPlayers()) do
+			if v.Name ~= lp.Name then
+				table.insert(Found,v)
+			end
+		end 
+	elseif strl == "me" then
+		for i,v in pairs(game:FindService("Players"):GetPlayers()) do
+			if v.Name == lp.Name then
+				table.insert(Found,v)
+			end
+		end 
+	else
+		for i,v in pairs(game:FindService("Players"):GetPlayers()) do
+			if v.Name:lower():sub(1, #String) == String:lower() then
+				table.insert(Found,v)
+			end
+		end 
+	end
+	return Found 
+end
+
+local function notif(str,dur)
+	game:FindService("StarterGui"):SetCore("SendNotification", {
+		Title = "Sebee's Pro Panel Remake",
+		Text = str,
+		Icon = "",
+		Duration = dur or 3
+	})
+end
+
+local ScreenGui = Instance.new("ScreenGui")
+local TextLabel = Instance.new("TextLabel")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local TextBox = Instance.new("TextBox")
+local TextLabel_2 = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+local TextButton_2 = Instance.new("TextButton")
+local TextButton_3 = Instance.new("TextButton")
+local TextButton_4 = Instance.new("TextButton")
+local plr = game:GetService("Players").LocalPlayer
+
+--Properties:
+
+ScreenGui.Name = "ScreenGui.Exe"
+ScreenGui.Parent = game:GetService("CoreGui")
+ScreenGui.ResetOnSpawn = false
+
+TextLabel.Parent = ScreenGui
+TextLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.Position = UDim2.new(0.212290496, 0, 0.377038062, 0)
+TextLabel.Size = UDim2.new(0, 413, 0, 33)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "Sebee's Pro Panel Remake"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 30.000
+
+ScrollingFrame.Parent = TextLabel
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame.Position = UDim2.new(-0.00210675434, 0, 0.986495376, 0)
+ScrollingFrame.Size = UDim2.new(0, 416, 0, 140)
+
+TextBox.Parent = ScrollingFrame
+TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.Position = UDim2.new(0.258554459, 0, 0.0635869503, 0)
+TextBox.Size = UDim2.new(0, 200, 0, 28)
+TextBox.Font = Enum.Font.SourceSans
+TextBox.Text = ""
+TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.TextSize = 25.000
+
+TextLabel_2.Parent = ScrollingFrame
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(85, 85, 85)
+TextLabel_2.Position = UDim2.new(0.258554459, 0, 0.26593557, 0)
+TextLabel_2.Size = UDim2.new(0, 200, 0, 4)
+TextLabel_2.Font = Enum.Font.SourceSans
+TextLabel_2.Text = ""
+TextLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.TextSize = 14.000
+
+TextButton.Parent = ScrollingFrame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.Position = UDim2.new(0.0452164896, 0, 0.393225968, 0)
+TextButton.Size = UDim2.new(0, 129, 0, 29)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "Kill"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 14.000
+
+TextButton_2.Parent = ScrollingFrame
+TextButton_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_2.Position = UDim2.new(0.641826928, 0, 0.385714293, 0)
+TextButton_2.Size = UDim2.new(0, 130, 0, 30)
+TextButton_2.Font = Enum.Font.SourceSans
+TextButton_2.Text = "Bring"
+TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_2.TextSize = 14.000
+
+TextButton_3.Parent = ScrollingFrame
+TextButton_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_3.Position = UDim2.new(0.0445584506, 0, 0.595477521, 0)
+TextButton_3.Size = UDim2.new(0, 129, 0, 29)
+TextButton_3.Font = Enum.Font.SourceSans
+TextButton_3.Text = "Fling"
+TextButton_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_3.TextSize = 14.000
+
+TextButton_4.Parent = ScrollingFrame
+TextButton_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton_4.Position = UDim2.new(0.641826928, 0, 0.592857122, 0)
+TextButton_4.Size = UDim2.new(0, 130, 0, 29)
+TextButton_4.Font = Enum.Font.SourceSans
+TextButton_4.Text = "VIP_FirstTime's Fucker"
+TextButton_4.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_4.TextSize = 14.000
+
+TextLabel.Draggable = true
+TextLabel.Selectable = true
+TextLabel.Active = true
+
+TextButton.MouseButton1Down:Connect(function()
+    local Target = gplr(TextBox.Text)
+        if Target[1] then
+    local Target = Target[1]
+         Target.Character.HumanoidRootPart.CFrame = lp.Character.HumanoidRootPart.CFrame
+           wait()
+    	plr.Character.Humanoid:UnequipTools()
+	local Humanoid = plr.Character.Humanoid:Clone()
+	local Tool = plr.Backpack:FindFirstChildOfClass("Tool")
+	plr.Character.Animate.Disabled = true
+	plr.Character.Humanoid:Destroy()
+	Humanoid.Parent = plr.Character
+	Tool.Parent = plr.Character
+    game.Players.LocalPlayer.Character.Humanoid:ChangeState(15)
+	firetouchinterest(Target.Character.HumanoidRootPart, Tool.Handle, 0);
+    else
+   notif("Invalid player")
+end
+end)
+
+TextButton_2.MouseButton1Down:Connect(function()
+    local Target = gplr(TextBox.Text)
+    if Target[1] then
+    Target = Target[1]
+NOW = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+game.Players.LocalPlayer.Character.Humanoid.Name = 1
+local l = game.Players.LocalPlayer.Character["1"]:Clone()
+l.Parent = game.Players.LocalPlayer.Character
+l.Name = "Humanoid"
+wait()
+game.Players.LocalPlayer.Character["1"]:Destroy()
+game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+game.Players.LocalPlayer.Character.Animate.Disabled = true
+wait()
+game.Players.LocalPlayer.Character.Animate.Disabled = false
+game.Players.LocalPlayer.Character.Humanoid.DisplayDistanceType = "None"
+for i,v in pairs(game:GetService'Players'.LocalPlayer.Backpack:GetChildren())do
+game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+end
+local function tp(player,player2)
+local char1,char2=player.Character,player2.Character
+if char1 and char2 then
+char1.HumanoidRootPart.CFrame = char2.HumanoidRootPart.CFrame
+end
+end
+local function getout(player,player2)
+local char1,char2=player.Character,player2.Character
+if char1 and char2 then
+char1:MoveTo(char2.Head.Position)
+end
+end
+tp(Target, game.Players.LocalPlayer)
+wait()
+tp(Target, game.Players.LocalPlayer)
+wait()
+getout(game.Players.LocalPlayer, Target)
+wait()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = NOW
+else
+notif("Invalid player")
+end
+end)
+
+TextButton_3.MouseButton1Down:Connect(function()
+    	local Target = gplr(TextBox.Text)
+	if Target[1] then
+		Target = Target[1]
+		
+		local Thrust = Instance.new('BodyThrust', lp.Character.HumanoidRootPart)
+		Thrust.Force = Vector3.new(9999,9999,9999)
+		Thrust.Name = "YeetForce"
+		repeat
+			lp.Character.HumanoidRootPart.CFrame = Target.Character.HumanoidRootPart.CFrame
+			Thrust.Location = Target.Character.HumanoidRootPart.Position
+			game:FindService("RunService").Heartbeat:wait()
+		until not Target.Character:FindFirstChild("Head")
+	else
+		notif("Invalid player")
+	end
+end)
+
+TextButton_4.MouseButton1Down:Connect(function()
+    
+end)
+
+--[[//
+		notif("Invalid player")
+	end
+\\]]--
+prefix = "!"
+
+local lplayer = game.Players.LocalPlayer
+
+lplayer.Chatted:Connect(function(msg)
+if string.sub(msg, 1, 7) == (prefix.."toggle") then
+  if TextLabel.Visible == true then
+		TextLabel.Visible = false
+          else
+      TextLabel.Visible = true
+	end
+end
+if string.sub(msg, 1, 8) == (prefix.."destroy") then
+ScreenGui:Destroy()
+end
+end)
